@@ -21,6 +21,8 @@ class HTTPServiceError(AssertionError):
         :param response: the HTTP response which was deemed in error
         """
         self.response = response
+        self.url = response.url
+        self.code = response.status_code
         try:
             self.details = response.json()
         except ValueError:
